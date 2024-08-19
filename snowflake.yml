@@ -1,0 +1,13 @@
+definition_version: "1.1"
+streamlit:
+  name: storage_review_forecast
+  stage: storage_streamlit_stage
+  query_warehouse: DEMO_WH
+  main_file: streamlit_app.py
+  env_file: environment.yml
+  additional_source_files:
+    - storage/forecast.py
+    - storage/queries.py
+    - storage/recommendations.py
+    - storage/session.py
+    - storage/visualization.py
