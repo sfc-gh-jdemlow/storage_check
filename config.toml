@@ -1,8 +1,1 @@
-[connections.myconnection]
-account = ""
-user = ""
-password = ""
-database = ""
-schema = ""
-warehouse = ""
-role = ""
+[connections.default]
