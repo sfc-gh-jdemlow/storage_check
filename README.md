@@ -68,6 +68,14 @@ and recommendations. The session state is managed to ensure that data is
 only fetched or computed when necessary, reducing redundant operations
 and improving performance.
 
+### `all_in_one.py`: Combined Streamlit Application
+
+This file combines all the components into a single script for easier
+deployment and testing. It is useful for running the application locally
+or deploying it to Streamlit on Snowflake. The script imports the
+necessary modules and creates the Streamlit app with all the required
+functionality. Feel free to delete or only work off this file.
+
 ## Application Workflow
 
 1.  **Data Fetching and Initialization:**  
