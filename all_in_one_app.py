@@ -133,7 +133,11 @@ if st.session_state.breakdown_data is None:
             STORAGE_BYTES as total_active_bytes,
             STAGE_BYTES as total_stage_bytes,
             FAILSAFE_BYTES as total_failsafe_bytes
-        FROM snowflake.account_usage.storage_usage
+        FROM (
+            SELECT * 
+            FROM snowflake.account_usage.storage_usage
+            WHERE usage_date < CURRENT_DATE()
+        )
         WHERE USAGE_DATE = (SELECT MAX(USAGE_DATE) FROM snowflake.account_usage.storage_usage)
     )
     SELECT 

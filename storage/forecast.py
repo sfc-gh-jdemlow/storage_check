@@ -9,7 +9,12 @@ def generate_storage_forecast(training_days, predicted_days):
     SELECT 
         TO_TIMESTAMP_NTZ(usage_date) AS usage_date,
         storage_bytes / POWER(1024, 3) AS storage_gb
-    FROM snowflake.account_usage.storage_usage
+    FROM   
+    (
+        SELECT * 
+        FROM snowflake.account_usage.storage_usage
+        WHERE usage_date < CURRENT_DATE()
+    )
     WHERE TO_TIMESTAMP_NTZ(usage_date) < DATEADD(day, -{training_days}, CURRENT_DATE());
     """)
 

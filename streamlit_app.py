@@ -10,7 +10,6 @@ from storage.visualization import (
 from storage.forecast import generate_storage_forecast
 from storage.recommendations import generate_recommendations, display_recommendations
 
-
 # Initialize session state
 if 'storage_data' not in st.session_state:
     st.session_state.storage_data = None
@@ -75,7 +74,7 @@ if st.session_state.breakdown_data is None:
             STAGE_BYTES as total_stage_bytes,
             FAILSAFE_BYTES as total_failsafe_bytes
         FROM snowflake.account_usage.storage_usage
-        WHERE USAGE_DATE = (SELECT MAX(USAGE_DATE) FROM snowflake.account_usage.storage_usage)
+        WHERE USAGE_DATE = DATEADD(day, -1, (SELECT MAX(USAGE_DATE) FROM snowflake.account_usage.storage_usage))
     )
     SELECT 
         ROUND(total_active_bytes / POWER(1024, 3), 1) AS "Active Storage (GB)",
